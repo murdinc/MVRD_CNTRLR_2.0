@@ -6,7 +6,7 @@
 #include <XBee.h>
 #include <OzOLED.h>
 
-#include "MVRD_CNTRLR.h"
+#include "MVRD_CNTRLR_2.0.h"
 
 USB Usb;
 XBOXUSB Xbox(&Usb);
