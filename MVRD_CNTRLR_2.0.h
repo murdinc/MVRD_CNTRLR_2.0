@@ -1,10 +1,12 @@
 // NODE CLASS
 struct NodeObj {
+  //uint8_t Raw;
+  uint8_t Identity[25];
+  int Length;
   uint16_t Address;
   char SH;
   char SL;
   char Strength;
-  char Identifier;
   bool Valid = false;
 };
 
@@ -12,14 +14,20 @@ struct NodeObj {
 class Controller {
     public:
     Controller();
+    
     void initOLED();
     void initUSB();
     void initXBee();
-    void scanNodes();
+    void scanNodes(NodeObj[]);
+    void selectNode();
+    void printMenu();
+    void printStats();
+    void sendPacket();
+    void recievePacket();
+    
     int nodeCount = 0;
-    NodeObj nodeObjs[];
-    int mode = 0;
-    uint16_t addr = 0x0000;
+    uint16_t Address;
+    uint8_t Identity[25];
 
     // allocate two bytes for to hold a 10-bit analog reading
     uint8_t payload[2] = { 0, 0 };
@@ -29,7 +37,7 @@ class Controller {
 
     private:
     NodeObj Node();
-    int timeout = 5000;  // default value of NT (if NT command fails)
+    int timeout = 2500;  // default value of NT (if NT command fails)
     AtCommandRequest request = AtCommandRequest();
     AtCommandResponse response = AtCommandResponse();
 };
