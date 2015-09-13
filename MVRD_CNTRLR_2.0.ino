@@ -235,13 +235,6 @@ void loop() {
       OzOled.printString("-----", 10, 4);
     }
 
-    
-    //sprintf (buf, "x%04X", controller.packet.momentary);
-    //OzOled.printString(buf, 11, 1);
-    //sprintf (buf, "x%04X", controller.packet.d_pad);
-    //OzOled.printString(buf, 11, 2);
-
-
   }
   
 }
@@ -434,7 +427,6 @@ void Controller::sendPayload() {
   controller.tx.setAddress16(node.Address);
   xbee.send(tx);
 
-  // after sending a tx request, we expect a status response
   controller.recievePacket();
 }
 
@@ -444,14 +436,11 @@ void Controller::recievePacket() {
   // wait up to 5 seconds for the status response
   if (xbee.readPacket(5000)) {
       // got a response!
-  
-    // should be a znet tx status              
+             
     if (xbee.getResponse().getApiId() == TX_STATUS_RESPONSE) {
        xbee.getResponse().getTxStatusResponse(txStatus);
       
-       // get the delivery status, the fifth byte
          if (txStatus.getStatus() == SUCCESS) {
-            // success.  time to celebrate
               controller.success = true;
          } else {
             // the remote XBee did not receive our packet. is it powered on?
