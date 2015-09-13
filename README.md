@@ -1,7 +1,7 @@
 # MVRD_CNTRLR_2.0
 Arduino based device for the remote control of ground and air robots using (XBox, XBee, i2c OLED, and USB Host Shield).
 
-My goal with this project is to create an intuitive, expandable, self-contained, and affordable DIY alternative to traditional RC controllers. 
+My goals with this project is to create an intuitive, expandable, self-contained, and affordable DIY alternative to traditional RC controllers. 
 
 This started when I first became interested in multicopters. I found a lot of feature-rich Arduino based microcontrollers designed to be used as flight controllers, but everyone was still using traditional RC controllers and recievers that feed into those. Most of the high-end RC controllers are bulky and expensive, and they don't really intuitive for use in air vehicles (to me).
 
