@@ -1,4 +1,4 @@
-// NODE CLASS
+// NODE STRUCT
 struct NodeObj {
   //uint8_t Raw;
   uint8_t Identity[25];
@@ -10,10 +10,36 @@ struct NodeObj {
   bool Valid = false;
 };
 
+// PACKET STRUCT
+struct PacketObj {
+  int16_t leftX, leftY, rightX, rightY; // - - + // Maybe convert to uint_8?
+
+  // Triggers
+  uint8_t l2; // 0-255
+  uint8_t r2; // 0-255
+  
+  // Buttons - toggle
+  bool a = 0;
+  bool b = 0;
+  bool x = 0;
+  bool y = 0;
+
+  // Buttons - momentary
+  bool l1 = 0;
+  bool r1 = 0;
+  bool l3 = 0;
+  bool r3 = 0;
+
+  // D Pad - momentary
+  bool d_up;
+  bool d_down;
+  bool d_left;
+  bool d_right;
+};
+
 // CONTROLLER CLASS
 class Controller {
     public:
-    Controller();
     
     void initOLED();
     void initUSB();
@@ -22,15 +48,16 @@ class Controller {
     void selectNode();
     void printMenu();
     void printStats();
-    void sendPacket();
+    void buildPacket();
+    void sendPayload();
     void recievePacket();
     
     int nodeCount = 0;
     uint16_t Address;
     uint8_t Identity[25];
-
-    // allocate two bytes for to hold a 10-bit analog reading
-    uint8_t payload[2] = { 0, 0 };
+    bool success = false;
+    PacketObj packet;
+    uint8_t payload[12];
     
     // Inits
     void initOLD();
@@ -38,14 +65,13 @@ class Controller {
     private:
     NodeObj Node();
     int timeout = 2500;  // default value of NT (if NT command fails)
-    AtCommandRequest request = AtCommandRequest();
-    AtCommandResponse response = AtCommandResponse();
+    AtCommandRequest at_request = AtCommandRequest();
+    AtCommandResponse at_response = AtCommandResponse();
+    
+    Tx16Request tx = Tx16Request(0x1337, payload, sizeof(payload));    
 };
 
 Controller controller;
-
-Controller::Controller() {
-}
 
 // AT Commands
 uint8_t SH[] = {'S','H'};  // Serial Number High
