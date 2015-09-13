@@ -375,18 +375,6 @@ void Controller::buildPacket() {
     controller.packet.d_down = Xbox.getButtonPress(DOWN);
     controller.packet.d_left = Xbox.getButtonPress(LEFT);
     controller.packet.d_right = Xbox.getButtonPress(RIGHT);
-
-    // Back
-    //////////
-    if (Xbox.getButtonPress(BACK)) {
-      
-    }
-    
-    // Start
-    //////////
-    if (Xbox.getButtonPress(START)) {
-      
-    }
     
   }
 }
