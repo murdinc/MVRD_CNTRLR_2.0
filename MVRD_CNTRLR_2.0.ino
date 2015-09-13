@@ -325,11 +325,6 @@ void Controller::buildPacket() {
   if (Xbox.Xbox360Connected) {
 
     // Joysticks
-    controller.packet.leftX = Xbox.getAnalogHat(LeftHatX);
-    controller.packet.leftY = Xbox.getAnalogHat(LeftHatY);
-    controller.packet.rightX = Xbox.getAnalogHat(RightHatX);
-    controller.packet.rightY = Xbox.getAnalogHat(RightHatY);
-
     if (Xbox.getAnalogHat(LeftHatX) > 7500 || Xbox.getAnalogHat(LeftHatX) < -7500) {
       controller.packet.leftX = Xbox.getAnalogHat(LeftHatX);
     } else {
