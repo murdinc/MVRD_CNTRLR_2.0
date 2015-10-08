@@ -8,6 +8,6 @@ This started when I first became interested in multicopters. I found a lot of fe
 The CRUIS AIOP boards have an optional expansion board that supports XBee cards. In additon to being two-way radios, XBees have a lot of useful features when you create a network with them, such as the ability to relay messages to each other. My intention is to utilize those cards and only communicate through the XBee radios. 
 
 **Video Test 1:**
-https://vimeo.com/141848456
+[https://vimeo.com/141848456](https://vimeo.com/141848456)
 
 If you think this is project is interesting and want to contribute, please do! 
